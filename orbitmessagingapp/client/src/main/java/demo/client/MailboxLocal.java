@@ -1,6 +1,5 @@
 package demo.client;
 
-import cloud.orbit.concurrent.Task;
 import demo.shared.Mailbox;
 import demo.shared.Message;
 
@@ -19,7 +18,7 @@ public class MailboxLocal implements Mailbox {
     private List<Message> messages = new ArrayList<>();
 
     @Override
-    public Task<Void> addMessage(String text) {
+    public void addMessage(String text) {
         printMsg("addMessage called");
 
         Message newMessage = new Message();
@@ -28,24 +27,20 @@ public class MailboxLocal implements Mailbox {
         newMessage.setText(text);
 
         messages.add(newMessage);
-
-        return Task.done();
     }
 
     @Override
-    public Task<List<Message>> getAllMessages() {
+    public List<Message> getAllMessages() {
         printMsg("getAllMessages called");
 
-        return Task.fromValue(messages);
+        return messages;
     }
 
     @Override
-    public Task<Void> deleteAllMessages() {
+    public void deleteAllMessages() {
         printMsg("deleteAllMessages called");
 
         messages.clear();
-
-        return Task.done();
     }
 
     private void printMsg(String pattern, Object[]... args) {

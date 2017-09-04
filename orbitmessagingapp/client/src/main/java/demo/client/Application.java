@@ -56,8 +56,7 @@ public class Application {
 
         Mailbox mail = getMailbox(account);
         System.out.println("=== Messages: ===");
-        mail.getAllMessages().join()
-                .forEach(System.out::println);
+        mail.getAllMessages().forEach(System.out::println);
         System.out.println("=== === ===\n");
     }
 
@@ -68,7 +67,7 @@ public class Application {
         final String message = System.console().readLine();
 
         Mailbox mailbox = getMailbox(account);
-        mailbox.addMessage(message).join();
+        mailbox.addMessage(message);
     }
 
     private static void deleteAllMessages() {
