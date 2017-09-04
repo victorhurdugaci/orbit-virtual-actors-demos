@@ -1,4 +1,4 @@
-package demo.server;
+package demo.client;
 
 import cloud.orbit.actors.runtime.AbstractActor;
 import cloud.orbit.concurrent.Task;

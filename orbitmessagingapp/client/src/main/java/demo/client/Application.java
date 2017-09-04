@@ -79,7 +79,7 @@ public class Application {
 @Component
 class OrbitConfiguration implements OrbitSpringConfigurationAddon {
     public void configure(Stage stage) {
-        stage.setMode(Stage.StageMode.CLIENT);
+        stage.setMode(Stage.StageMode.HOST);
 
         final String redisUri = "redis://localhost:6379";
 
