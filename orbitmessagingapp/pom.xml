@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.victorhurdugaci.demo.orbitmessagingapp</groupId>
+    <artifactId>parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>shared</module>
+        <module>client</module>
+        <module>server</module>
+    </modules>
+    <properties>
+        <orbit.spring.version>1.2.0</orbit.spring.version>
+        <orbit.version>1.4.1</orbit.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cloud.orbit</groupId>
+                <artifactId>orbit-commons</artifactId>
+                <version>${orbit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cloud.orbit</groupId>
+                <artifactId>orbit-runtime</artifactId>
+                <version>${orbit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cloud.orbit</groupId>
+                <artifactId>orbit-redis-cluster</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>cloud.orbit</groupId>
+                <artifactId>orbit-spring</artifactId>
+                <version>${orbit.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.8.7</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <target>1.8</target>
+                    <source>1.8</source>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
