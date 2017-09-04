@@ -6,7 +6,7 @@ import cloud.orbit.actors.cluster.RedisClusterBuilder;
 import cloud.orbit.actors.cluster.RedisClusterPeer;
 import cloud.orbit.spring.EnableOrbit;
 import cloud.orbit.spring.OrbitSpringConfigurationAddon;
-import demo.shared.AccountActor;
+import demo.shared.Mailbox;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,13 @@ public class Application {
         new SpringApplicationBuilder(Application.class).run(args);
 
         while (true) {
-            System.out.println("\n1. Get messages\n2. Send message\n3. Delete all messages");
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("======== 1. Get messages        ========");
+            System.out.println("======== 2. Send message        ========");
+            System.out.println("======== 3. Delete all messages ========");
+            System.out.println("========================================");
+
             final String option = System.console().readLine();
             try {
                 switch (option) {
@@ -44,9 +50,9 @@ public class Application {
         System.out.println("Account: ");
         final String account = System.console().readLine();
 
-        AccountActor accountActor = Actor.getReference(AccountActor.class, account);
+        Mailbox mail = Actor.getReference(Mailbox.class, account);
         System.out.println("=== Messages: ===");
-        accountActor.getAllMessages().join()
+        mail.getAllMessages().join()
                 .forEach(System.out::println);
         System.out.println("=== === ===\n");
     }
@@ -57,15 +63,15 @@ public class Application {
         System.out.println("Message: ");
         final String message = System.console().readLine();
 
-        AccountActor accountActor = Actor.getReference(AccountActor.class, account);
-        accountActor.addMessage(message).join();
+        Mailbox mailbox = Actor.getReference(Mailbox.class, account);
+        mailbox.addMessage(message).join();
     }
 
     private static void deleteAllMessages() {
         System.out.println("Account: ");
         final String account = System.console().readLine();
 
-        AccountActor accountActor = Actor.getReference(AccountActor.class, account);
+        Mailbox accountActor = Actor.getReference(Mailbox.class, account);
         accountActor.deleteAllMessages();
     }
 }

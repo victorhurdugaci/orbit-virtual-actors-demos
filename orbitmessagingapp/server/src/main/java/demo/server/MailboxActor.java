@@ -3,7 +3,7 @@ package demo.server;
 import cloud.orbit.actors.runtime.AbstractActor;
 import cloud.orbit.concurrent.Task;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import demo.shared.AccountActor;
+import demo.shared.Mailbox;
 import demo.shared.Message;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class MailboxActor extends AbstractActor<MailboxState> implements AccountActor {
+public class MailboxActor extends AbstractActor<MailboxState> implements Mailbox {
     private final ObjectMapper jsonMapper = new ObjectMapper();
 
     @Override
