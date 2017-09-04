@@ -10,21 +10,21 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-public class DefaultAccountActor extends AbstractActor<DefaultAccountState> implements AccountActor {
+public class MailboxActor extends AbstractActor<MailboxState> implements AccountActor {
     private final ObjectMapper jsonMapper = new ObjectMapper();
 
     @Override
     public Task<?> activateAsync() {
-        readState().join();
-        printMsg("Activated");
-        return super.activateAsync();
+        printMsg("activateAsync called");
+
+        return readState();
     }
 
     @Override
     public Task<?> deactivateAsync() {
-        printMsg("Deactivated");
+        printMsg("deactivateAsync called");
+
         return super.deactivateAsync();
     }
 
@@ -32,13 +32,16 @@ public class DefaultAccountActor extends AbstractActor<DefaultAccountState> impl
     protected Task<Boolean> readState() {
         return Task.supplyAsync(() -> {
             File inputFile = new File(getIdentity() + "_state.json");
+
             if (!inputFile.exists()) {
                 printMsg("No previous state found. Creating new");
-                this.state = new DefaultAccountState();
+
+                this.state = new MailboxState();
             } else {
                 printMsg("Loading previous state");
+
                 try {
-                    this.state = jsonMapper.readValue(inputFile, DefaultAccountState.class);
+                    this.state = jsonMapper.readValue(inputFile, MailboxState.class);
                 } catch (Exception ex) {
 
                 }
@@ -52,6 +55,7 @@ public class DefaultAccountActor extends AbstractActor<DefaultAccountState> impl
     protected Task<Void> writeState() {
         return Task.runAsync(() -> {
             printMsg("Saving state");
+
             File outputFile = new File(getIdentity() + "_state.json");
             try {
                 jsonMapper.writeValue(outputFile, state());
@@ -65,7 +69,9 @@ public class DefaultAccountActor extends AbstractActor<DefaultAccountState> impl
     protected Task<Void> clearState() {
         return Task.supplyAsync(() -> {
             printMsg("Clearning state");
-            this.state = new DefaultAccountState();
+
+            this.state = new MailboxState();
+
             return writeState();
         });
     }
@@ -75,19 +81,23 @@ public class DefaultAccountActor extends AbstractActor<DefaultAccountState> impl
         printMsg("addMessage called");
 
         Message newMessage = new Message();
-        newMessage.setId(UUID.randomUUID());
+
         newMessage.setDateTime(new Date());
         newMessage.setText(text);
 
         state().getMessages().add(newMessage);
+
         return writeState();
     }
 
+    @Override
     public Task<List<Message>> getAllMessages() {
         printMsg("getAllMessages called");
+
         return Task.fromValue(state().getMessages());
     }
 
+    @Override
     public Task<Void> deleteAllMessages() {
         printMsg("deleteAllMessages called");
 

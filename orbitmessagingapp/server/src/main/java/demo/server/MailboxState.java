@@ -5,7 +5,7 @@ import demo.shared.Message;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultAccountState {
+public class MailboxState {
     private List<Message> messages = new ArrayList<>();
 
     public List<Message> getMessages() {
