@@ -20,11 +20,19 @@
         </dependency>
         <dependency>
             <groupId>cloud.orbit</groupId>
+            <artifactId>orbit-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cloud.orbit</groupId>
             <artifactId>orbit-spring</artifactId>
         </dependency>
         <dependency>
             <groupId>cloud.orbit</groupId>
             <artifactId>orbit-redis-cluster</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
         </dependency>
     </dependencies>
 

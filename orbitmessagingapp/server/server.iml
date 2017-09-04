@@ -34,7 +34,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.4.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: cloud.orbit:orbit-redis-cluster:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: cloud.orbit:orbit-redis-cluster:1.2.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.ssedano:jump-consistent-hash:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.redisson:redisson:3.4.4" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.13.Final" level="project" />

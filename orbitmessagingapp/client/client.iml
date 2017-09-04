@@ -20,6 +20,7 @@
     <orderEntry type="library" name="Maven: cloud.orbit:orbit-commons:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: cloud.orbit:orbit-runtime:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: cloud.orbit:orbit-core:1.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: cloud.orbit:orbit-infinispan-cluster:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.infinispan:infinispan-embedded:9.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.1.Final" level="project" />
@@ -33,7 +34,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.4.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: cloud.orbit:orbit-redis-cluster:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: cloud.orbit:orbit-redis-cluster:1.2.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.ssedano:jump-consistent-hash:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.redisson:redisson:3.4.4" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.13.Final" level="project" />
@@ -46,10 +47,8 @@
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-stream:2.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:2.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.7.9" level="project" />
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.15" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.7.9" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.7.0" level="project" />
     <orderEntry type="library" name="Maven: net.openhft:zero-allocation-hashing:0.8" level="project" />
@@ -57,5 +56,6 @@
     <orderEntry type="library" name="Maven: org.jodd:jodd-bean:3.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.jodd:jodd-core:3.7.1" level="project" />
     <orderEntry type="library" name="Maven: net.jpountz.lz4:lz4:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" level="project" />
   </component>
 </module>
