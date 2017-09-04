@@ -1,6 +1,5 @@
 package demo.client;
 
-import cloud.orbit.actors.runtime.AbstractActor;
 import cloud.orbit.concurrent.Task;
 import demo.shared.Mailbox;
 import demo.shared.Message;
@@ -10,22 +9,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MailboxActor extends AbstractActor implements Mailbox {
+public class MailboxLocal implements Mailbox {
+    private final String id;
+
+    public MailboxLocal(String id) {
+        this.id = id;
+    }
+
     private List<Message> messages = new ArrayList<>();
-
-    @Override
-    public Task<?> activateAsync() {
-        printMsg("activateAsync called");
-
-        return Task.done();
-    }
-
-    @Override
-    public Task<?> deactivateAsync() {
-        printMsg("deactivateAsync called");
-
-        return super.deactivateAsync();
-    }
 
     @Override
     public Task<Void> addMessage(String text) {
@@ -60,7 +51,7 @@ public class MailboxActor extends AbstractActor implements Mailbox {
     private void printMsg(String pattern, Object[]... args) {
         final String prefix = String.format("[%s %s] ",
                 new SimpleDateFormat("HH:mm:ss").format(new Date()),
-                getIdentity());
+                id);
         pattern = prefix + pattern;
         System.out.println(String.format(pattern, (Object[]) args));
     }

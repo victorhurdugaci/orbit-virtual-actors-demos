@@ -1,11 +1,10 @@
 package demo.shared;
 
-import cloud.orbit.actors.Actor;
 import cloud.orbit.concurrent.Task;
 
 import java.util.List;
 
-public interface Mailbox extends Actor {
+public interface Mailbox {
     Task<Void> addMessage(String text);
 
     Task<List<Message>> getAllMessages();

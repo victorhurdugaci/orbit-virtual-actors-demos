@@ -1,19 +1,15 @@
 package demo.client;
 
-import cloud.orbit.actors.Actor;
-import cloud.orbit.actors.Stage;
-import cloud.orbit.actors.cluster.RedisClusterBuilder;
-import cloud.orbit.actors.cluster.RedisClusterPeer;
-import cloud.orbit.spring.EnableOrbit;
-import cloud.orbit.spring.OrbitSpringConfigurationAddon;
 import demo.shared.Mailbox;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.stereotype.Component;
 
-@EnableOrbit
+import java.util.HashMap;
+
 @SpringBootApplication(scanBasePackages = {"demo.client"})
 public class Application {
+    private static HashMap<String, Mailbox> mailboxes = new HashMap<>();
+
     public static void main(String args[]) {
         new SpringApplicationBuilder(Application.class).run(args);
 
@@ -46,11 +42,19 @@ public class Application {
         }
     }
 
+    private static Mailbox getMailbox(String id) {
+        if (!mailboxes.containsKey(id)) {
+            mailboxes.put(id, new MailboxLocal(id));
+        }
+
+        return mailboxes.get(id);
+    }
+
     private static void showMessages() {
         System.out.println("Account: ");
         final String account = System.console().readLine();
 
-        Mailbox mail = Actor.getReference(Mailbox.class, account);
+        Mailbox mail = getMailbox(account);
         System.out.println("=== Messages: ===");
         mail.getAllMessages().join()
                 .forEach(System.out::println);
@@ -63,7 +67,7 @@ public class Application {
         System.out.println("Message: ");
         final String message = System.console().readLine();
 
-        Mailbox mailbox = Actor.getReference(Mailbox.class, account);
+        Mailbox mailbox = getMailbox(account);
         mailbox.addMessage(message).join();
     }
 
@@ -71,25 +75,8 @@ public class Application {
         System.out.println("Account: ");
         final String account = System.console().readLine();
 
-        Mailbox accountActor = Actor.getReference(Mailbox.class, account);
+        Mailbox accountActor = getMailbox(account);
         accountActor.deleteAllMessages();
-    }
-}
-
-@Component
-class OrbitConfiguration implements OrbitSpringConfigurationAddon {
-    public void configure(Stage stage) {
-        stage.setMode(Stage.StageMode.HOST);
-
-        final String redisUri = "redis://localhost:6379";
-
-        RedisClusterPeer redisPeer = new RedisClusterBuilder()
-                .actorDirectoryUri(redisUri)
-                .nodeDirectoryUri(redisUri)
-                .messagingUri(redisUri)
-                .build();
-
-        stage.setClusterPeer(redisPeer);
     }
 }
 
